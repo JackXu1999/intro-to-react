@@ -8,7 +8,7 @@ import {
     BreadcrumbItem,
     Breadcrumb,
     Button,
-    ModalHeader, ModalBody, Modal, Label, Row, Input, Col
+    ModalHeader, ModalBody, Modal, Label, Row,
 } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from "react-redux-form";
