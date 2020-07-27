@@ -36,7 +36,7 @@ class CommentForm extends Component{
 
     handleSubmit(values) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
     render() {
@@ -60,13 +60,13 @@ class CommentForm extends Component{
                                 </Control.select>
                             </Row>
                             <Row className="form-group">
-                                <Label htmlFor="name" >Your Name</Label>
-                                <Control.text model=".name" name="name" className="form-control" placeholder="Your Name"
+                                <Label htmlFor="author" >Your Name</Label>
+                                <Control.text model=".author" name="author" id="author" className="form-control" placeholder="Your Name"
                                               validators={{
                                                   minLength: minLength(3), maxLength: maxLength(15)
                                               }}
                                 />
-                                <Errors model=".name" className="text-danger" show="touched" messages={{
+                                <Errors model=".author" className="text-danger" show="touched" messages={{
                                     minLength: "Must be greater than 3 characters",
                                     maxLength: "Must be 15 characters or less"
                                     }}
@@ -110,7 +110,7 @@ class CommentForm extends Component{
         }
     }
 
-    function RenderComments({comments, addComment, dishId}) {
+    function RenderComments({comments, postComment, dishId}) {
         if (comments != null) {
             const comment_element = comments.map((comment) => {
                 return (
@@ -124,7 +124,7 @@ class CommentForm extends Component{
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comment</h4>
                     <ul className="list-unstyled">{comment_element}</ul>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
             );
         } else {
@@ -167,7 +167,7 @@ class CommentForm extends Component{
                     <div className="row">
                         <RenderDish dish={props.dish} />
                         <RenderComments comments={props.comments}
-                                        addComment={props.addComments}
+                                        postComment={props.postComment}
                                         dishId={props.dish.id} />
                     </div>
                 </div>
