@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Breadcrumb, BreadcrumbItem, Button, Label, Input, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
-import { Control, Form, Errors, actions } from "react-redux-form";
+import {Control, Form, Errors, actions, LocalForm} from "react-redux-form";
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -13,19 +13,24 @@ class Contact extends Component{
 
     constructor(props) {
         super(props);
-
-
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
     handleSubmit(values) {
-        console.log("Current State is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(values));
-        this.props.resetFeedbackForm()
+        // console.log("Current State is: " + JSON.stringify(values));
+        // alert("Current State is: " + JSON.stringify(values));
+        this.props.resetFeedbackForm();
+        this.props.postFeedback(
+            values.firstname,
+            values.lastname,
+            values.telnum,
+            values.email,
+            values.agree,
+            values.contactType,
+            values.message
+        );
     }
-
 
     render() {
 
@@ -80,7 +85,7 @@ class Contact extends Component{
                                                   placeholder="First Name"
                                                   className="form-control"
                                                   validators={{
-                                                      required, minLength: minLength(3), maxLength: maxLength(15)
+                                                      required, minLength: minLength(2), maxLength: maxLength(15)
                                                   }}
                                     />
                                     <Errors className="text-danger"
@@ -101,7 +106,7 @@ class Contact extends Component{
                                                   placeholder="Last Name"
                                                   className="form-control"
                                                   validators={{
-                                                      required, minLength: minLength(3), maxLength: maxLength(15)
+                                                      required, minLength: minLength(2), maxLength: maxLength(15)
                                                   }}
                                     />
                                     <Errors className="text-danger"
@@ -109,7 +114,7 @@ class Contact extends Component{
                                             show="touched"
                                             messages={{
                                                 required: "Required",
-                                                minLength: "Must be greater than 2 characters",
+                                                minLength: "Must be greater than 1 characters",
                                                 maxLength: "Must be 15 characters or less"
                                             }}
                                     />
