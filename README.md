@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a finished course work of Front-End Development (https://www.coursera.org/learn/front-end-react/) with React on Coursera (https://www.coursera.com).
+This is a finished course work of [Front-End Development](https://www.coursera.org/learn/front-end-react/) with React on [Coursera](https://www.coursera.com).
 
 Hope this repo can help if you ever get lost when completing this course.
 ## Available Scripts
